@@ -6,8 +6,32 @@ const router = express.Router()
 const imageMimeTypes = ['image/jpeg', 'image/png', 'images/gif']
 
 router.get('/', async (req, res) => {
-    const posts = await Post.find().sort({ createdAt: 'desc'})
-    res.render('posts/index', {posts: posts})
+    let query = Post.find()     // => all posts
+    if (req.query.title != null && req.query.title != '') {
+        // create query to filter the array of objs with this regex 
+        query = query.regex('title', new RegExp(req.query.title, 'i' ))
+    }
+    if (req.query.publishedAfter != null && req.query.publishedAfter != '') {
+        query = query.lte('publishDate', req.query.publishedAfter)
+    }
+    if (req.query.publishedBefore != null && req.query.publishedBefore != '') {
+        console.log("routes, publishedBefore: " + req.query.publishedBefore)
+        query = query.lte('publishDate', req.query.publishedBefore)
+    }
+    //k it seems query is accumulated all search params
+    // not sure how it works, but it works, title= "mo", before=2020-05-13
+    // => http://localhost:4000/posts?title=mo&publishedBefore=2020-05-13
+    try {
+        const posts = await query.exec()
+        res.render('posts/index', {
+             posts: posts,
+             searchOptions: req.query
+        })
+    } catch {
+        res.redirect('/')
+    }
+    //const posts = await Post.find().sort({ createdAt: 'desc'})
+    //res.render('posts/index', {posts: posts})
     //res.send("post root page")
 })
 router.get('/new', (req, res) => {

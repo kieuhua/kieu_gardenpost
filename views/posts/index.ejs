@@ -1,12 +1,26 @@
 <div class="container">
-    <h1 class="mb-4">Kieu Garden Posts</h1>
+    <h2>Search Post</h2>
+    <form action="/posts" method="GET">
+        <div>
+            <label>Title</label>
+            <input type="text" name="title" value="<%= searchOptions.title %>">
+            <label class="ml-4">Published After</label>
+            <input type="date" name="publishedAfter" value="<%= searchOptions.publishedAfter %>" >
+            <label class="ml-4">Published Before</label>
+            <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>" >
+        </div>
+        <button type="submit">Search</button>
+
+    </form>
+    
+    <h1 class="mt-4 mb-4">Kieu Garden Posts</h1>
     <a href="/posts/new" class="btn btn-success">New Post</a>
     <% posts.forEach(post => { %>
         <div class="card mt-4">
             <div class="card-body">
                 <h4 class="card-title"><%= post.title %></h4>
                 <div class="car-subtitle text-muted mb-2">
-                    <%= post.createdAt.toLocaleDateString() %>
+                    <%= post.publishDate.toLocaleDateString() %>
                 </div>
                 <div class="card-text mb-2"><%= post.description %></div>
                 <img height="150" width="100" src="<%= post.pictureImagePath %>" 

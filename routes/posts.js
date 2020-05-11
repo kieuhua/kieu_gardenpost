@@ -54,6 +54,21 @@ router.post('/', async (req,res) => {
     }
 })
 
+router.put('/:slug', async (req, res) => {
+    //console.log("routes, put, slug1: ", req.params.slug)
+    let post = await Post.findOne({slug: req.params.slug })
+    //console.log("routes, put, slug2: ", post.slug )
+    post.title = req.body.title
+    post.description = req.body.description
+    post.publishDate = req.body.publishDate
+    try {
+        post = await post.save()
+        res.redirect(`/posts/${post.slug}`)
+    } catch(err) {
+        res.render(`posts/${post.slug}`)
+    }
+})
+
 //k I should use :id here bc it doesn't display url
 router.delete('/:id', async (req, res) => {
     await Post.findByIdAndDelete(req.params.id)
@@ -76,8 +91,8 @@ function saveImage(post, pictureEncoded) {
 function renderNewPage(res, post, hasError= false) {
    const params = { post: post }
    if (hasError) params.errorMessage = 'Error Creating Post'
-   if (post.postImage != null) {console.log("routes, postImage is not null ")}
-   if (post.postImageType != null) {console.log("routes, postImageType is not null ")}
+   //if (post.postImage != null) {console.log("routes, postImage is not null ")}
+   //if (post.postImageType != null) {console.log("routes, postImageType is not null ")}
    res.render('posts/new', params)
 }
 

@@ -9,28 +9,30 @@
             <label class="ml-4">Published Before</label>
             <input type="date" name="publishedBefore" value="<%= searchOptions.publishedBefore %>" >
         </div>
-        <button type="submit">Search</button>
+        <button class="btn btn-secondary mt-2" type="submit">Search</button>
 
     </form>
     
     <h1 class="mt-4 mb-4">Kieu Garden Posts</h1>
     <a href="/posts/new" class="btn btn-success">New Post</a>
     <% posts.forEach(post => { %>
-        <div class="card mt-4">
+        <div class="card mt-4 ml-4">
             <div class="card-body">
                 <h4 class="card-title"><%= post.title %></h4>
                 <div class="car-subtitle text-muted mb-2">
                     <%= post.publishDate.toLocaleDateString() %>
                 </div>
                 <div class="card-text mb-2"><%= post.description %></div>
-                <img height="150" width="100" src="<%= post.pictureImagePath %>" 
+                    <a href="posts/<%= post.slug %>" >
+                        <img height="150" width="100" title="Click me" src="<%= post.pictureImagePath %>" >
+                    </a>
+                    
+                    <a href="posts/edit/<%= post.slug %>" class="btn btn-info">Edit</a>
+                    <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" class="d-inline">
+                        <button type submit class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
-                <a href="posts/edit/<%= post.slug %>" class="btn btn-info">Edit</a>
-                <form action="/posts/<%= post.id %>?_method=DELETE" method="POST" class="d-inline">
-                    <button type submit class="btn btn-danger">Delete</button>
-                </form>
             </div>
         </div>
     <% }) %>
-
 </div>

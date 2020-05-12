@@ -5,8 +5,14 @@ const Post = require('../models/post')
 router.get('/', async (req, res) => {
     let posts
     try {
-        posts = await Post.find().sort({ createdAt: 'desc'}).limit(10).exec()
-    } catch {
+        console.log("routes, index, before Post find()")
+        /*  lack of memory for sorting I can only have 4 pictures.\
+        so, I may eliminate the sort, instead just list the pictures.
+        */
+        //posts = await Post.find().sort({ createdAt: 'desc'}).limit(4).exec()
+        posts = await Post.find().limit(10).exec()
+    } catch(error) {
+        console.log("routes, index, catch from  Post find(), error: " + error)
         posts = []
     } 
     res.render('index', {posts: posts})

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container-fluid" id="about">
+       
+             <h3>About Kieu Garden Posts</h3>
+             <div class="card bg-myphoto-light">
+               <div class="card-body" >
+                <div class="badge badge-primary">Main features</div>
+                 <p>It is node express application, it allows users to create posts with title, 
+                     description, publishdate and upload a garden picture. </>
+                <div class="badge badge-secondary">Search feature</div> 
+                    <p> Users can search with combination of critiria partial title, after or before particular publishdate. </p>
+                <div class="badge badge-secondary">Interesting feature</div>
+                    <p>By move your mouse over the picture, user will see an adjacent zoom-in picture. </p>
+                </div>
+             </div>
+             <br>
+             <h4>About Libraries</h4>
+            <div class="card-body">
+                <p>This application is designed and implemented by Kieu Hua. 
+                    The following are some of the libraries are used: /p>
+                <div class="badge badge-primary">Mongodb and Mongoose</div>
+                <p>Mongodb is backend database to store posts with mongoose, ORM(Object-Relational Mapping)</p>
+                <div class="badge badge-secondary">file-pond</div>
+                <p>She use file-pond library to serialize the picture image into string in order to store it in mongodb. </p>
+                <div class="badge badge-secondary">method-override</div>
+                <p>She uses method-override library, so she can use PUT and DELETE.</p>
+                <div class="badge badge-secondary">slugify</div>
+                <p>She uses slugify library to avoid using id on url. 
+                <div class="badge badge-secondary">express-ejs-layouts</div>
+                <p>She uses express-ejs-layouts partials to organize views.</p>
+        </div>
+   
+                 <blockquote class="blockquote">
+                   <footer class="blockquote-footer">To learn more about
+                     <a href="/profile.html">Kieu Hua</a>
+                   </footer>
+                 </blockquote>
+     
+    <a href="/" class="btn btn-primary">Home</a>
+    <footer class="footer text-center">      
+        <a href="/" class="text-primary"><small>&copy; Kieu Garden Posts</small></a>  |    	       
+         <a href="/contact.html" class="text-primary"><small>Terms &amp; Conditions</small></a> |
+        <a href="/profile.html" class="text-primary"><small>About me</small></a>      
+     </footer>
+</body>
+</html>

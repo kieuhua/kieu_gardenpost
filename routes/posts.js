@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
         query = query.lte('publishDate', req.query.publishedAfter)
     }
     if (req.query.publishedBefore != null && req.query.publishedBefore != '') {
-        console.log("routes, publishedBefore: " + req.query.publishedBefore)
+        //console.log("routes, publishedBefore: " + req.query.publishedBefore)
         query = query.lte('publishDate', req.query.publishedBefore)
     }
     //k it seems query is accumulated all search params
@@ -28,7 +28,8 @@ router.get('/', async (req, res) => {
              searchOptions: req.query
         })
     } catch {
-        res.redirect('/')
+        res.redirect('/posts')
+        //res.send("bad /")
     }
     //const posts = await Post.find().sort({ createdAt: 'desc'})
     //res.render('posts/index', {posts: posts})
@@ -69,11 +70,11 @@ router.post('/', async (req,res) => {
     // now you can save the post in try catch loop
     try {
         const newPost = await post.save()
-        res.redirect(`posts/${newPost.id}`)
+        res.redirect(`posts/${newPost.slug}`)
         //res.redirect(`post`)
     } catch(err) {
         // true => there is error 
-        console.log("routes, post save catch err: " + err)
+        //console.log("routes, post save catch err: " + err)
         renderNewPage(res, post, true)
     }
 })
@@ -100,9 +101,12 @@ router.delete('/:id', async (req, res) => {
 })
 
 function saveImage(post, pictureEncoded) {
+    if (pictureEncoded != null) console.log("routes, saveImage, before JSON.parse")
+
     if ( pictureEncoded == null) return
     const picture = JSON.parse(pictureEncoded)
     // => an obj with size, type, name,... and data
+    if (picture != null) console.log("routes, saveImage, picture is not null")
     if ( post != null && imageMimeTypes.includes(picture.type)) {
         post.postImage = new Buffer.from(picture.data, 'base64')
         // later we can use the buffer to convert correct type of image

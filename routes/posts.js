@@ -105,7 +105,7 @@ function saveImage(post, pictureEncoded) {
 
     if ( pictureEncoded == null) return
     const picture = JSON.parse(pictureEncoded)
-    // => an obj with size, type, name,... and data
+    // => picture, an obj with size, type, name,... and data
     if (picture != null) console.log("routes, saveImage, picture is not null")
     if ( post != null && imageMimeTypes.includes(picture.type)) {
         post.postImage = new Buffer.from(picture.data, 'base64')
@@ -119,8 +119,6 @@ function saveImage(post, pictureEncoded) {
 function renderNewPage(res, post, hasError= false) {
    const params = { post: post }
    if (hasError) params.errorMessage = 'Error Creating Post'
-   //if (post.postImage != null) {console.log("routes, postImage is not null ")}
-   //if (post.postImageType != null) {console.log("routes, postImageType is not null ")}
    res.render('posts/new', params)
 }
 

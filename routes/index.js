@@ -7,7 +7,7 @@ router.get('/', async (req, res) => {
     try {
         console.log("routes, index, before Post find()")
         /*  lack of memory for sorting I can only have 4 pictures.\
-        so, I may eliminate the sort, instead just list the pictures.
+        so, I may eliminate the sort, instead just list 10 the pictures.
         */
         //posts = await Post.find().sort({ createdAt: 'desc'}).limit(4).exec()
         posts = await Post.find().limit(10).exec()

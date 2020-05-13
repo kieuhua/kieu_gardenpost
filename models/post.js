@@ -13,11 +13,10 @@ const postSchema = new mongoose.Schema({
 
 // postImagePath is virtual property, it converts the postImage(Buffer) into actual image file
 // according to the specification type, charset,
-// need to use function() not => to access this 
+// need to use function() not => to able to access this obj
 postSchema.virtual('pictureImagePath').get( function() {
     //console.log("models,post, virtual, type:" + this.postImageType )
     if (this.postImage != null && this.postImageType != null) {
-       // return `data:${this.postImageType}; charset=utf-8; base64; ${this.postImage.toString('base64')}`
         return `data:${this.postImageType};charset=utf-8;base64,${this.postImage.toString('base64')}`
     }
 })

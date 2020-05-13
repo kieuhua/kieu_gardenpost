@@ -43,4 +43,4 @@ app.use(methodOverride('_method')) //k use _method param in view post form
 app.use('/', indexRouter)
 app.use('/posts', postRouter)
 
-app.listen(4000)
+app.listen(process.env.PORT || 3000 )

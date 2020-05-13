@@ -5,7 +5,6 @@ const Post = require('../models/post')
 router.get('/', async (req, res) => {
     let posts
     try {
-        console.log("routes, index, before Post find()")
         /*  lack of memory for sorting I can only have 4 pictures.\
         so, I may eliminate the sort, instead just list 10 the pictures.
         */

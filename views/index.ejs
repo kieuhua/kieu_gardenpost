@@ -1,11 +1,13 @@
 
 <h2>Pictures</h2>
 <div>
-    <% posts.forEach(post => { %>
-        <a href="posts/<%= post.slug %>" >
-            <img height="150" width="100" title="Click me" src="<%= post.pictureImagePath %>" >
-        </a>
-    <% }) %>
+    <% if (posts != null ) { %>
+        <% posts.forEach(post => { %>
+            <a href="posts/<%= post.slug %>" >
+                <img height="150" width="100" title="Click me" src="<%= post.pictureImagePath %>" >
+            </a>
+        <% }) %>
+    <% } %>
 </div>
 <a href="/posts/new" class="btn btn-success mt-4">New Post</a>
 <a href="/posts" class="btn btn-secondary mt-4">All Posts</a>

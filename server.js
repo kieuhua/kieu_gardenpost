@@ -17,7 +17,7 @@ const postRouter = require('./routes/posts')
 const app = express()
 
 //mongoose.connect('mongodb://localhost/kieuposts', {
-mongoose.connect(process.env.DATABASE_URL, {
+mongoose.connect(process.env.DATABASE_URI || 'mongodb:/localhost/kieuposts', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true

@@ -1,6 +1,5 @@
 # Kieu Garden Posts
-This is Node.js with Express server, it uses MongoDB database with mongoose (ORM) to store users garden pictures.
-Users can upload their garden pictures for the public views.
+This is Node.js with Express server, it uses MongoDB database with mongoose (ORM) to store users garden pictures. Users can upload their garden pictures for the public views.
 
 ## Features
 - Upload garden pictures
